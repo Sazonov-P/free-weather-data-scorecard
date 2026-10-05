@@ -259,7 +259,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
         <div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Best global source</span><span role="columnheader">Stations won</span><span role="columnheader">Typical error</span></div>
         <div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp</span><span class="b-src" role="cell" data-flap>ERA5</span><span class="b-won" role="cell"><span data-flap>85%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>1.06 °C</span></span></div>
         <div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp</span><span class="b-src" role="cell" data-flap>ERA5</span><span class="b-won" role="cell"><span data-flap>67%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>1.53 °C</span></span></div>
-        <div class="board-row" role="row"><span class="b-var" role="rowheader">Rain, week</span><span class="b-src" role="cell" data-flap>NASA POWER</span><span class="b-won" role="cell"><span data-flap>85%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>5.5 mm</span></span></div>
+        <div class="board-row" role="row"><span class="b-var" role="rowheader">Weekly rain</span><span class="b-src" role="cell" data-flap>NASA POWER</span><span class="b-won" role="cell"><span data-flap>85%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>5.5 mm</span></span></div>
       </div>
       <p class="board-foot">172 stations in 10 states, days when all sources have data (2017–2024). Typical error is the mean absolute error at the median station: of daily values for temperature, of weekly totals for rain. In the US, free <span class="nw">station-based</span> grids beat the best global source on rain.</p>
     </div>
@@ -501,7 +501,7 @@ function renderMap() {
   const title = (s) => {
     const x = s[mapVar];
     const kind = s.kind === "USCRN" ? "rural reference station (USCRN)" : "airport or first-order station";
-    return `${s.name}, ${s.state}\n${kind}\nBest: ${srcName(x.best)} ${fmt(x.value, d)} ${unit}\nRunner-up: ${srcName(x.second)} ${fmt(x.second_value, d)} ${unit}`;
+    return `${s.name}, ${s.state}\n${kind}\nLowest error: ${srcName(x.best)}, ${fmt(x.value, d)} ${unit}\nNext: ${srcName(x.second)}, ${fmt(x.second_value, d)} ${unit}`;
   };
   const chart = Plot.plot({
     width,

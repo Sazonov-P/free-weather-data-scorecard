@@ -254,14 +254,14 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <nav class="editions" aria-label="Edition"><a href="https://sazonov-p.github.io/free-weather-data-scorecard/">United States</a><a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/" aria-current="page">Germany &amp; France</a></nav>
     <p class="eyebrow">Accuracy check · 174 weather stations in Germany and France · 2017–2024</p>
     <h1>Which free weather data can you trust in Germany and France?</h1>
-    <p class="dek">We compared four free global data sets (ERA5, ERA5-Land, ECMWF IFS and NASA POWER) with the daily records of the German and French national weather services. Each service ends its day at its own hours, so we cut every data set into the same windows before comparing.</p>
+    <p class="dek">We compared four free global data sets (ERA5, ERA5-Land, ECMWF IFS and NASA POWER) with the daily records of the German and French national weather services. The services do not count their days from midnight to midnight, so we rebuilt each data set's daily values over the services' hours before comparing.</p>
     <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · October 2026</p>
     <div class="board">
       <div role="table" aria-label="Best free global source by variable, Germany and France">
         <div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Best free source</span><span role="columnheader">Stations won</span><span role="columnheader">Typical error</span></div>
         <div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp</span><span class="b-src" role="cell" data-flap>ERA5</span><span class="b-won" role="cell"><span data-flap>62%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>1.09 °C</span></span></div>
         <div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp</span><span class="b-src" role="cell" data-flap>ERA5</span><span class="b-won" role="cell"><span data-flap>63%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>1.19 °C</span></span></div>
-        <div class="board-row" role="row"><span class="b-var" role="rowheader">Rain, week</span><span class="b-src" role="cell" data-flap>NASA POWER</span><span class="b-won" role="cell"><span data-flap>64%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>5.3 mm</span></span></div>
+        <div class="board-row" role="row"><span class="b-var" role="rowheader">Weekly rain</span><span class="b-src" role="cell" data-flap>NASA POWER</span><span class="b-won" role="cell"><span data-flap>64%</span><small> of stations</small></span><span class="b-err" role="cell"><small>error </small><span data-flap>5.3 mm</span></span></div>
       </div>
       <p class="board-foot">80 DWD stations in Germany and 94 Météo-France stations in France, 2017–2024, days when all sources have data. Typical error is the mean absolute error at the median station: of daily values for temperature, of weekly totals for rain. The same sources won in our US test.</p>
     </div>
@@ -310,20 +310,20 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
   <section id="day">
     <div class="col">
       <p class="eyebrow">A trap in the timestamps</p>
-      <h2>Rain days run from 6 to 6</h2>
-      <p>Ask DWD or Météo-France for Monday's rain and you get what fell between 6:00 UTC on Monday and 6:00 UTC on Tuesday. Temperature days differ by country. DWD takes Monday's high and low from midnight to midnight UTC. Météo-France takes Monday's high from 6:00 UTC on Monday to 6:00 UTC on Tuesday, and Monday's low from 18:00 UTC on Sunday to 18:00 UTC on Monday. The free data sets come as hourly values in UTC, so we cut each of them into the service's own windows.</p>
+      <h2>Daily rain is counted from 6:00 to 6:00 UTC</h2>
+      <p>Ask DWD or Météo-France for Monday's rain and you get what fell between 6:00 UTC on Monday and 6:00 UTC on Tuesday. For temperature, the hours differ by country. DWD takes Monday's high and low from midnight to midnight UTC. Météo-France takes Monday's high from 6:00 UTC on Monday to 6:00 UTC on Tuesday, and Monday's low from 18:00 UTC on Sunday to 18:00 UTC on Monday. The free data sets come as hourly values in UTC, so we rebuilt their daily values over the same hours the services use.</p>
     </div>
     <figure class="band">
       <div class="chart" id="day-chart" role="img" aria-label="Time windows of one day at DWD and Météo-France"></div>
       <figcaption>Times are UTC. Clocks in Germany and France show UTC+1 in winter and UTC+2 in summer.</figcaption>
     </figure>
     <div class="col">
-      <p>To see how much the window matters, we moved the end of the day hour by hour and measured how far ERA5's daily rain landed from the gauges each time. The error was smallest with the day ending at 6:00 UTC, as both services document; that hour came out best at 59 of 80 German and 62 of 94 French stations. A plain calendar day, midnight to midnight in local winter time, made the daily rain error 23% larger in Germany and 22% larger in France. For temperature, calendar days added at most 6% to ERA5's error, because the day's high and low usually fall well inside either window.</p>
+      <p>To see how much this matters, we moved the end of the day hour by hour and measured how far ERA5's daily rain landed from the gauges each time. The error was smallest with the day ending at 6:00 UTC, as both services document; that hour came out best at 59 of 80 German and 62 of 94 French stations. A plain calendar day, midnight to midnight in local winter time, made the daily rain error 23% larger in Germany and 22% larger in France. For temperature, calendar days added at most 6% to ERA5's error, because the day's high and low usually fall well inside either window.</p>
     </div>
     <figure class="band">
       <div class="legend" id="scan-legend"></div>
       <div class="chart" id="scan-chart" role="img" aria-label="Error of ERA5 daily rain for day windows ending at different hours"></div>
-      <figcaption>Median absolute error of ERA5 daily rain at 80 DWD and 94 Météo-France stations, 2017–2024, as the end of Monday's window moves from noon on Monday to noon on Tuesday (UTC).</figcaption>
+      <figcaption>Median absolute error of ERA5 daily rain at 80 DWD and 94 Météo-France stations, 2017–2024, as the end of Monday's day moves from noon on Monday to noon on Tuesday, UTC.</figcaption>
     </figure>
   </section>
 
@@ -378,7 +378,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
           <tr><td>Daily max temperature</td><td><span class="pick">ERA5</span></td><td>Lowest error at 62% of stations. In Germany the ECMWF forecasts came close. In hilly terrain adjust for height, about 0.7 °C per 100 m.</td></tr>
           <tr><td>Daily min temperature</td><td><span class="pick">ERA5</span>, check locally</td><td>Best at 63% of stations; in France the ECMWF forecasts had a slightly lower median error. Raw values run 0.6 to 0.8 °C warm at night.</td></tr>
           <tr><td>Rain</td><td><span class="pick">NASA POWER</span></td><td>Lowest error of weekly totals at 64% of stations, about 10% less error than ERA5 and IFS. POWER rain is adjusted to gauge analyses. A plain average of POWER, ERA5 and IFS did slightly better still, 5.1 mm against 5.3 mm.</td></tr>
-          <tr><td>Daily rain to match DWD or Météo-France</td><td><span class="pick">6:00 to 6:00 UTC</span></td><td>Cut any source into the services' rain day. Calendar days add about a fifth to the daily error.</td></tr>
+          <tr><td>Daily rain to match DWD or Météo-France</td><td><span class="pick">6:00 to 6:00 UTC</span></td><td>Add up any source's hourly rain over these hours. Calendar days add about a fifth to the daily error.</td></tr>
           <tr><td>Frost risk, degree days</td><td>Correct the bias with local stations</td><td>Raw sources run warm at night and cool by day.</td></tr>
         </tbody>
       </table>
@@ -391,7 +391,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
       <h2>Method and limits</h2>
       <ul class="tight">
         <li>Reference: daily station records of the national weather services, 2017–2024. Germany: DWD Climate Data Center, daily max and min temperature and rain. France: Météo-France basic daily climate data for mainland France and Corsica; values flagged as doubtful were dropped.</li>
-        <li>Each service closes its day at its own hours (chart above). Every source was cut into the same windows from its hourly values, NASA POWER included. German stations count only if their metadata show these windows for the whole period.</li>
+        <li>Each service closes its day at its own hours (chart above). Every source's daily values were rebuilt from its hourly values over the same hours, NASA POWER included. German stations count only if their metadata show these hours for the whole period.</li>
         <li>One station per French département and per 1° × 0.75° cell in Germany: the most complete one, with at least 90% of days in 7 of 8 years for every variable. Stations that moved more than 2 km or 50 m in height during the period were left out.</li>
         <li>ECMWF IFS here is Open-Meteo's archive of the high-resolution forecast. It starts in 2017, which sets the period.</li>
         <li>Each source is read at the nearest grid point over land, without interpolation, and all sources are compared on the same days. Helgoland has no land point nearby in ERA5-Land, so it counts for rain only.</li>
@@ -498,7 +498,7 @@ function renderMap() {
   const d = mapVar === "prcp" ? 1 : 2;
   const title = (s) => {
     const x = s[mapVar];
-    return `${s.name}, ${COUNTRY[s.country]}, ${fmt(s.elev, 0)} m\nBest: ${srcName(x.best)} ${fmt(x.value, d)} ${unit}\nRunner-up: ${srcName(x.second)} ${fmt(x.second_value, d)} ${unit}`;
+    return `${s.name}, ${COUNTRY[s.country]}, ${fmt(s.elev, 0)} m\nLowest error: ${srcName(x.best)}, ${fmt(x.value, d)} ${unit}\nNext: ${srcName(x.second)}, ${fmt(x.second_value, d)} ${unit}`;
   };
   const chart = Plot.plot({
     width,
@@ -593,7 +593,7 @@ function renderScan() {
     height: narrow ? 300 : 340,
     marginLeft: 44, marginRight: 24, marginTop: 20, marginBottom: 44,
     style: plotStyle(narrow ? "11px" : "12px"),
-    x: { domain: [12, 36], ticks: narrow ? [12, 24, 36] : [12, 18, 24, 30, 36], tickFormat: tickLabel, label: "Monday's day window ends at, UTC →" },
+    x: { domain: [12, 36], ticks: narrow ? [12, 24, 36] : [12, 18, 24, 30, 36], tickFormat: tickLabel, label: "End of Monday's day, UTC →" },
     y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Median error of daily rain, mm" },
     marks: [
       Plot.ruleX([24 - DATA.windows.MF_prcp.documented], { stroke: tok("--rule"), strokeDasharray: "3 3" }),
@@ -680,13 +680,13 @@ function renderHeight() {
 
 /* Winners in the US, Germany and France */
 function renderCompare() {
-  const vars = [["tmax", "Max temp", "tmax_mae", "°C", 2], ["tmin", "Min temp", "tmin_mae", "°C", 2], ["prcp", "Rain, weekly", "prcp_week", "mm", 1]];
+  const vars = [["tmax", "Max temp", "tmax_mae", "°C", 2], ["tmin", "Min temp", "tmin_mae", "°C", 2], ["prcp", "Weekly rain", "prcp_week", "mm", 1]];
   const regions = [["US", DATA.us], ["Germany", DATA.country.DE], ["France", DATA.country.FR]].filter((r) => r[1]);
   const lead = (rows, v) => rows.reduce((a, b) => ((b[`${v}_wins`] ?? 0) > (a[`${v}_wins`] ?? 0) ? b : a));
   const head = `<thead><tr><th>Variable</th>${regions.map((r) => `<th>${r[0]}</th>`).join("")}</tr></thead>`;
   const body = vars.map(([v, label, key, unit, d]) => `<tr><td>${label}</td>${regions.map(([, rows]) => {
     const b = lead(rows, v);
-    return `<td><span class="pick"><span class="swatch" style="background:${srcColor(b.source)}"></span>${srcName(b.source)}</span><span class="err">${pct(b[`${v}_wins`])} of stations · ${fmt(b[key], d)} ${unit}</span></td>`;
+    return `<td><span class="pick"><span class="swatch" style="background:${srcColor(b.source)}"></span>${srcName(b.source)}</span><span class="err">${pct(b[`${v}_wins`])} of stations · error ${fmt(b[key], d)} ${unit}</span></td>`;
   }).join("")}</tr>`).join("");
   document.getElementById("compare-table").innerHTML = head + `<tbody>${body}</tbody>`;
 }
