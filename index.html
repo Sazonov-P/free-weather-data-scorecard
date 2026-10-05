@@ -230,15 +230,30 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
   .guide td { border: 0; padding: 0.1rem 0; }
   .guide td:first-child { min-width: 0; }
 }
+/* Edition switch: the US and the Germany-France pages are one scorecard with two sections */
+.editions { display: inline-flex; justify-self: start; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.editions a {
+  font-family: var(--f-data);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.editions a + a { border-left: 1px solid var(--rule); }
+.editions a[aria-current="page"] { background: var(--ink); color: var(--paper); }
+.editions a:not([aria-current]):hover { background: var(--paper-2); }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
 
 <div class="page">
   <header class="hero band">
+    <nav class="editions" aria-label="Edition"><a href="https://sazonov-p.github.io/free-weather-data-scorecard/" aria-current="page">United States</a><a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">Germany &amp; France</a></nav>
     <p class="eyebrow">Accuracy check · 374 US weather stations · 2015–2024</p>
     <h1>Which free weather data can you trust?</h1>
     <p class="dek">We compared four free global data sets (ERA5, ERA5-Land, ECMWF IFS and NASA POWER) with daily observations at US weather stations. Then we tested the leaders against two free <span class="nw">station-based</span> grids, NOAA nClimGrid and gridMET, on 100 farm weather stations that NOAA's grid never saw.</p>
-    <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · October 2026 · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">Germany and France edition</a></p>
+    <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · October 2026</p>
     <div class="board">
       <div role="table" aria-label="Best free global source by variable">
         <div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Best global source</span><span role="columnheader">Stations won</span><span role="columnheader">Typical error</span></div>
@@ -390,7 +405,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
       <h2>Sources</h2>
       <ul class="tight sources">
         <li>Station observations: NOAA GHCN-Daily (Menne et al. 2012) and GHCNh, public domain. Iowa Environmental Mesonet of Iowa State University. North Dakota Agricultural Weather Network (NDAWN), North Dakota State University.</li>
-        <li>ERA5, ERA5-Land: contains modified Copernicus Climate Change Service information 2026. ECMWF IFS: © ECMWF, CC BY 4.0. Weather data by <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo.com</a> (CC BY 4.0), aggregated to daily values.</li>
+        <li>ERA5, ERA5-Land: contains modified Copernicus Climate Change Service information 2026. ECMWF IFS: © ECMWF, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>. Weather data by <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>), aggregated to daily values.</li>
         <li>NASA POWER: the POWER Project is funded through the NASA Applied Sciences Program within the Earth Science Division of the Science Mission Directorate.</li>
         <li>nClimGrid-Daily: NOAA NCEI (Durre et al. 2022). gridMET: Abatzoglou (2013), CC0.</li>
         <li>State boundaries: us-atlas (ISC), from U.S. Census Bureau cartographic boundary files.</li>
