@@ -4,7 +4,7 @@ Which free weather data can you trust? ERA5, ERA5-Land, ECMWF IFS and NASA POWER
 
 **Page:** https://sazonov-p.github.io/free-weather-data-scorecard/
 
-**European edition:** https://sazonov-p.github.io/free-weather-data-scorecard/europe/ — the same sources checked against 197 DWD, Météo-France and GeoSphere Austria stations in Germany, France and Austria, with daily values rebuilt over each service's own hours.
+**European edition:** https://sazonov-p.github.io/free-weather-data-scorecard/europe/ — the same sources checked against 261 stations of the national weather services of Germany, France, Austria, Switzerland, Czechia, Denmark and the Netherlands, with daily values rebuilt over each service's own hours.
 
 **Canada edition:** https://sazonov-p.github.io/free-weather-data-scorecard/canada/ — the same sources checked against 122 Environment and Climate Change Canada stations on the farmland of the Prairies, Ontario and Quebec.
 
