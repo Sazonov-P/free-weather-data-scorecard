@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ERA5 vs NASA POWER in North Dakota: free temperature and rainfall data checked against weather stations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta name="description" content="ERA5 vs NASA POWER in North Dakota: ERA5&#x27;s daily highs off by 1.28 °C, NASA POWER&#x27;s weekly rain by 3.7 mm, at 11 weather stations, 2017–2024.">
+<meta name="author" content="Pavel Sazonov">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Free Weather Data Scorecard">
+<meta property="og:title" content="ERA5 vs NASA POWER in North Dakota">
+<meta property="og:description" content="ERA5 vs NASA POWER in North Dakota: ERA5&#x27;s daily highs off by 1.28 °C, NASA POWER&#x27;s weekly rain by 3.7 mm, at 11 weather stations, 2017–2024.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sazonov-p.github.io/free-weather-data-scorecard/us/north-dakota/">
+<meta property="og:url" content="https://sazonov-p.github.io/free-weather-data-scorecard/us/north-dakota/">
+<meta property="og:image" content="https://sazonov-p.github.io/free-weather-data-scorecard/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ERA5 vs NASA POWER in North Dakota", "description": "ERA5 vs NASA POWER in North Dakota: ERA5's daily highs off by 1.28 °C, NASA POWER's weekly rain by 3.7 mm, at 11 weather stations, 2017–2024.", "author": {"@type": "Person", "name": "Pavel Sazonov", "url": "https://www.linkedin.com/in/sazonov-pavel/"}, "inLanguage": "en", "datePublished": "2026-11-10", "dateModified": "2026-11-10", "about": ["ERA5", "ERA5-Land", "ECMWF IFS", "NASA POWER", "North Dakota", "weather data accuracy"], "isPartOf": {"@type": "WebSite", "name": "Free Weather Data Scorecard", "url": "https://sazonov-p.github.io/free-weather-data-scorecard/"}, "url": "https://sazonov-p.github.io/free-weather-data-scorecard/us/north-dakota/", "image": "https://sazonov-p.github.io/free-weather-data-scorecard/og-image.png"}</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c2f321b1-af0f-4c54-a377-bbd1c1c1e328" data-domains="sazonov-p.github.io" data-exclude-hash="true" data-do-not-track="true"></script>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Answer pages: one question per page, the same station logbook as the four editions, no scripts. */
+:root {
+  --paper: #f1f4f3; --paper-2: #e3e9e7; --ink: #15222e; --ink-2: #4f5f69; --rule: #c9d3d0; --accent: #1f5ea6;
+  --board: #101b27; --board-ink: #f2b53f; --board-dim: #8b98a2; --board-line: #24313e;
+  --c-era5: #12786c; --c-era5_land: #5fa79c; --c-ifs: #3d57a6; --c-power: #c0651a;
+  --v-yes: #1d7148; --v-care: #8a5d00; --v-no: #b3372a; --land: #e3e9e7; --land-line: #b4c1bd;
+  --f-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Newsreader", Georgia, "Times New Roman", serif;
+  --f-data: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --measure: 38rem; --wide: 1080px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1720; --paper-2: #18232e; --ink: #e3eaed; --ink-2: #9dacb5; --rule: #2b3946; --accent: #82b4f0;
+    --board: #070d14; --board-ink: #f4bb4c; --board-dim: #7d8a94; --board-line: #1d2834;
+    --c-era5: #40c1ad; --c-era5_land: #93d6cb; --c-ifs: #8fa4f1; --c-power: #ef9a50;
+    --v-yes: #62cf98; --v-care: #e7b64e; --v-no: #f08a6e; --land: #18232e; --land-line: #34434f;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 1.125rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.page { padding-inline: max(16px, 4vw); padding-block: 0 4rem; }
+.col { width: 100%; max-width: var(--measure); margin-inline: auto; }
+.band { width: 100%; max-width: var(--wide); margin-inline: auto; }
+.hero > *, section > *, figure > * { min-width: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2 { font-family: var(--f-display); font-weight: 800; line-height: 1.02; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.6rem); }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-data); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.crumbs { font-family: var(--f-data); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--ink-2); }
+.hero { padding-block: clamp(2rem, 6vw, 4rem) 0.5rem; display: grid; gap: 1.1rem; }
+.hero h1 { font-size: clamp(2.5rem, 1.5rem + 4.6vw, 4.6rem); max-width: 20ch; }
+.dek { font-size: clamp(1.15rem, 1rem + 0.5vw, 1.35rem); max-width: var(--measure); }
+.byline { font-family: var(--f-data); font-size: 0.85rem; letter-spacing: 0.04em; color: var(--ink-2); }
+.board { background: var(--board); color: var(--board-ink); border-radius: 6px; padding: clamp(0.9rem, 2.5vw, 1.4rem); box-shadow: inset 0 0 0 1px var(--board-line); }
+.board-row { display: grid; grid-template-columns: minmax(6.5rem, 1fr) minmax(9rem, 1.7fr) minmax(5rem, 0.8fr) minmax(6rem, 0.9fr); column-gap: 1rem; align-items: baseline; padding-block: 0.55rem; border-bottom: 1px solid var(--board-line); }
+.board-row:last-child { border-bottom: 0; }
+.board-head span { font-family: var(--f-data); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--board-dim); }
+.b-var, .b-src, .b-won, .b-err { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.25rem, 1rem + 1.3vw, 1.9rem); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.b-var { color: var(--board-dim); }
+.b-err { text-transform: none; }
+.b-src.tie { font-size: clamp(1rem, 0.9rem + 0.8vw, 1.4rem); white-space: normal; }
+.board small { display: none; }
+.board-foot { font-family: var(--f-data); font-size: 0.78rem; color: var(--board-dim); margin-top: 0.75rem; }
+@media (max-width: 620px) {
+  .board-head { display: none; }
+  .board-row { grid-template-columns: 1fr auto; grid-template-areas: "var var" "src src" "won err"; row-gap: 0.1rem; padding-block: 0.7rem; }
+  .b-var { grid-area: var; font-family: var(--f-data); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; }
+  .b-src { grid-area: src; font-size: 1.9rem; }
+  .b-won { grid-area: won; font-size: 1.15rem; }
+  .b-err { grid-area: err; font-size: 1.15rem; text-align: right; }
+  .board small { display: inline; font-family: var(--f-data); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; color: var(--board-dim); }
+}
+section { padding-block: clamp(2.2rem, 5vw, 3.4rem) 0; display: grid; gap: 1rem; }
+section > .col { display: grid; gap: 0.9rem; }
+.note { font-size: 0.95rem; color: var(--ink-2); }
+.scroll { overflow-x: auto; }
+.scroll-hint { display: none; font-family: var(--f-data); font-size: 0.75rem; color: var(--ink-2); }
+table { border-collapse: collapse; width: 100%; font-size: 0.98rem; }
+th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+th { font-family: var(--f-data); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+td.r, th.r { text-align: right; }
+td.src { white-space: nowrap; font-weight: 600; }
+.swatch { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.45rem; vertical-align: 0.02em; }
+.best .num, .num.best { font-weight: 600; }
+.num.best::after { content: " ▲"; font-size: 0.7em; color: var(--ink-2); }
+tr.here td { background: var(--paper-2); font-weight: 600; }
+.verdict { display: inline-block; font-family: var(--f-data); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.08rem 0.4rem; border: 1px solid currentColor; border-radius: 4px; margin-left: 0.35rem; }
+.v-yes { color: var(--v-yes); } .v-care { color: var(--v-care); } .v-no { color: var(--v-no); }
+.maps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 1.4rem; }
+figure { margin: 0; display: grid; gap: 0.5rem; align-content: start; }
+figcaption { font-size: 0.9rem; color: var(--ink-2); }
+.map svg { display: block; width: 100%; height: auto; }
+.map .land { fill: var(--land); stroke: var(--land-line); stroke-width: 1; }
+.map circle { stroke: var(--paper); stroke-width: 1.2; }
+.s-era5 { fill: var(--c-era5); } .s-era5_land { fill: var(--c-era5_land); } .s-ifs { fill: var(--c-ifs); } .s-power { fill: var(--c-power); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.9rem; }
+.legend .count { font-family: var(--f-data); font-size: 0.8rem; color: var(--ink-2); }
+ul.tight { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; }
+.sources li { font-size: 0.92rem; }
+.related { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-family: var(--f-data); font-size: 0.85rem; }
+.download { font-family: var(--f-data); font-size: 0.9rem; }
+footer { padding-block: 3rem 0; }
+footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: grid; gap: 0.4rem; font-size: 0.88rem; color: var(--ink-2); }
+table.tasks { min-width: 40rem; }  /* on a phone the verdict table scrolls sideways instead of squeezing four columns */
+@media (max-width: 640px) {
+  body { font-size: 1.05rem; }
+  th, td { padding-inline: 0.4rem; }
+  .scroll-hint { display: block; }
+}
+</style>
+<div class="page">
+  <header class="hero band">
+    <p class="crumbs"><a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a> › North Dakota</p>
+    <p class="eyebrow">Accuracy check · 11 weather stations in North Dakota · 2017–2024</p>
+    <h1>ERA5 vs NASA POWER in North Dakota</h1>
+    <p class="dek">ERA5 for temperature, NASA POWER for rain. At 11 weather stations in North Dakota, 2017–2024, ERA5 had the smallest error in the daily high at all 11 stations, typically 1.28 °C off, and in the daily low at all 11. NASA POWER had the smallest error in weekly rain at all 11 stations, typically 3.7 mm off a week and 28% off on monthly totals.</p>
+    <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · November 2026 · Free Weather Data Scorecard</p>
+    <div class="board"><div role="table" aria-label="Best free global source by variable, North Dakota"><div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Best free source</span><span role="columnheader">Stations won</span><span role="columnheader">Typical error</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">11 of 11 <small>stations</small></span><span class="b-err" role="cell">1.28 °C <small>typical error</small></span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">11 of 11 <small>stations</small></span><span class="b-err" role="cell">1.61 °C <small>typical error</small></span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Weekly rain</span><span class="b-src" role="cell">NASA POWER</span><span class="b-won" role="cell">11 of 11 <small>stations</small></span><span class="b-err" role="cell">3.7 mm <small>typical error</small></span></div></div><p class="board-foot">11 NOAA stations: airport ASOS stations and the US Climate Reference Network, 2017–2024, days when all sources have data. Typical error is the mean absolute error at the median station: of daily values for temperature, of weekly totals for rain.</p></div>
+  </header>
+
+  <section id="temperature"><div class="col">
+    <p class="eyebrow">Temperature</p><h2>Daily highs and lows in North Dakota</h2>
+    <p>A source wins a station when its error there is the lowest. Average offset is the source minus the station: below zero runs cool, above zero runs warm.</p>
+  </div><div class="band"><p class="scroll-hint">Swipe the table sideways for all columns →</p><div class="scroll"><table><thead><tr><th>Source</th><th>Grid</th><th class="r">Daily high:<br>typical error</th><th class="r">average offset</th><th class="r">stations won</th><th class="r">Daily low:<br>typical error</th><th class="r">average offset</th><th class="r">stations won</th></tr></thead><tbody><tr><td class="src"><span class="swatch" style="background:var(--c-era5)"></span>ERA5</td><td>0.25°</td><td class="r"><span class="num best">1.28 °C</span></td><td class="r"><span class="num">-0.67 °C</span></td><td class="r"><span class="num">11 of 11</span></td><td class="r"><span class="num best">1.61 °C</span></td><td class="r"><span class="num">1.18 °C</span></td><td class="r"><span class="num">11 of 11</span></td></tr><tr><td class="src"><span class="swatch" style="background:var(--c-era5_land)"></span>ERA5-Land</td><td>0.1°</td><td class="r"><span class="num">1.53 °C</span></td><td class="r"><span class="num">-0.71 °C</span></td><td class="r"><span class="num">0 of 11</span></td><td class="r"><span class="num">2.56 °C</span></td><td class="r"><span class="num">2.03 °C</span></td><td class="r"><span class="num">0 of 11</span></td></tr><tr><td class="src"><span class="swatch" style="background:var(--c-ifs)"></span>ECMWF IFS</td><td>9 km</td><td class="r"><span class="num">1.60 °C</span></td><td class="r"><span class="num">-0.87 °C</span></td><td class="r"><span class="num">0 of 11</span></td><td class="r"><span class="num">2.24 °C</span></td><td class="r"><span class="num">1.81 °C</span></td><td class="r"><span class="num">0 of 11</span></td></tr><tr><td class="src"><span class="swatch" style="background:var(--c-power)"></span>NASA POWER</td><td>0.5° × 0.625°</td><td class="r"><span class="num">1.74 °C</span></td><td class="r"><span class="num">0.42 °C</span></td><td class="r"><span class="num">0 of 11</span></td><td class="r"><span class="num">2.18 °C</span></td><td class="r"><span class="num">1.08 °C</span></td><td class="r"><span class="num">0 of 11</span></td></tr></tbody></table></div></div></section>
+
+  <section id="rain"><div class="col">
+    <p class="eyebrow">Rain</p><h2>Rain in North Dakota</h2>
+    <p>Daily rain is too noisy to compare one day at a time, so we compare weekly and monthly totals, and count how often a source shows a rainy day that stayed dry at the station.</p>
+  </div><div class="band"><p class="scroll-hint">Swipe the table sideways for all columns →</p><div class="scroll"><table><thead><tr><th>Source</th><th>Grid</th><th class="r">Weekly rain:<br>typical error</th><th class="r">Monthly rain:<br>error, % of total</th><th class="r">Its rainy days that<br>stayed dry at the station</th><th class="r">Stations won</th></tr></thead><tbody><tr><td class="src"><span class="swatch" style="background:var(--c-era5)"></span>ERA5</td><td>0.25°</td><td class="r"><span class="num">4.6 mm</span></td><td class="r"><span class="num">36 %</span></td><td class="r"><span class="num">38 %</span></td><td class="r"><span class="num">0 of 11</span></td></tr><tr><td class="src"><span class="swatch" style="background:var(--c-ifs)"></span>ECMWF IFS</td><td>9 km</td><td class="r"><span class="num">4.8 mm</span></td><td class="r"><span class="num">39 %</span></td><td class="r"><span class="num">40 %</span></td><td class="r"><span class="num">0 of 11</span></td></tr><tr><td class="src"><span class="swatch" style="background:var(--c-power)"></span>NASA POWER</td><td>0.5° × 0.625°</td><td class="r"><span class="num best">3.7 mm</span></td><td class="r"><span class="num best">28 %</span></td><td class="r"><span class="num">37 %</span></td><td class="r"><span class="num">11 of 11</span></td></tr></tbody></table></div></div></section>
+
+  <section id="map"><div class="col">
+    <p class="eyebrow">Station by station</p><h2>Where each source wins</h2>
+  </div><div class="band maps"><figure class="map"><svg viewBox="0 0 560 349" role="img" aria-label="Weather stations in North Dakota by the source with the lowest error in the daily high" xmlns="http://www.w3.org/2000/svg"><path class="land" d="M12.0,12.1L60.3,12.2L143.0,12.2L197.4,12.2L221.1,12.2L270.6,12.1L311.7,12.2L346.4,12.2L382.6,12.1L448.4,12.0L500.0,12.0L499.2,15.6L502.0,24.5L503.6,26.7L505.6,38.0L509.5,45.3L508.7,50.9L506.4,53.1L504.6,60.0L506.4,65.4L506.7,75.1L505.9,79.8L507.9,88.3L506.1,93.1L506.9,103.1L511.0,112.3L512.3,123.3L515.1,126.4L515.9,131.7L518.7,140.8L520.8,142.4L523.6,150.8L525.4,158.9L526.7,159.1L526.4,178.9L528.2,188.2L527.5,192.8L528.0,203.1L529.3,211.5L529.0,227.0L531.8,231.7L533.4,230.7L531.8,241.3L530.5,242.9L532.1,253.1L530.8,259.2L531.3,262.8L534.1,268.0L535.2,278.8L536.4,283.2L541.6,292.2L544.9,294.6L545.2,306.3L548.0,323.4L546.5,326.8L547.5,336.4L493.6,336.5L445.8,336.4L415.2,336.3L350.5,336.0L301.2,335.8L255.2,335.6L190.2,335.5L158.6,335.5L83.7,335.4L39.2,335.4L12.3,335.4L12.3,78.3L12.0,76.7L12.0,12.1Z"/><circle cx="247.2" cy="248.0" r="5" class="s-era5"><title>Bismarck: lowest error in the daily high — ERA5</title></circle><circle cx="101.6" cy="244.9" r="5" class="s-era5"><title>Dickinson Theodore Roosevelt R: lowest error in the daily high — ERA5</title></circle><circle cx="529.8" cy="231.8" r="5" class="s-era5"><title>Fargo Hector INTL AP: lowest error in the daily high — ERA5</title></circle><circle cx="198.6" cy="155.4" r="5" class="s-era5"><title>Garrison: lowest error in the daily high — ERA5</title></circle><circle cx="503.3" cy="124.0" r="5" class="s-era5"><title>Grand Forks INTL AP: lowest error in the daily high — ERA5</title></circle><circle cx="111.9" cy="328.5" r="5" class="s-era5"><title>Hettinger MUNI AP: lowest error in the daily high — ERA5</title></circle><circle cx="339.0" cy="248.1" r="5" class="s-era5"><title>Jamestown 38 WSW: lowest error in the daily high — ERA5</title></circle><circle cx="396.9" cy="231.6" r="5" class="s-era5"><title>Jamestown MUNI AP: lowest error in the daily high — ERA5</title></circle><circle cx="60.1" cy="234.9" r="5" class="s-era5"><title>Medora 7 E: lowest error in the daily high — ERA5</title></circle><circle cx="210.9" cy="91.2" r="5" class="s-era5"><title>Minot INTL AP: lowest error in the daily high — ERA5</title></circle><circle cx="146.4" cy="15.5" r="5" class="s-era5"><title>Northgate 5 ESE: lowest error in the daily high — ERA5</title></circle></svg><figcaption>Source with the lowest error in the daily high, 11 stations.</figcaption><div class="legend"><span><span class="swatch" style="background:var(--c-era5)"></span>ERA5 <span class="count">11</span></span></div></figure><figure class="map"><svg viewBox="0 0 560 349" role="img" aria-label="Weather stations in North Dakota by the source with the lowest error in weekly rain" xmlns="http://www.w3.org/2000/svg"><path class="land" d="M12.0,12.1L60.3,12.2L143.0,12.2L197.4,12.2L221.1,12.2L270.6,12.1L311.7,12.2L346.4,12.2L382.6,12.1L448.4,12.0L500.0,12.0L499.2,15.6L502.0,24.5L503.6,26.7L505.6,38.0L509.5,45.3L508.7,50.9L506.4,53.1L504.6,60.0L506.4,65.4L506.7,75.1L505.9,79.8L507.9,88.3L506.1,93.1L506.9,103.1L511.0,112.3L512.3,123.3L515.1,126.4L515.9,131.7L518.7,140.8L520.8,142.4L523.6,150.8L525.4,158.9L526.7,159.1L526.4,178.9L528.2,188.2L527.5,192.8L528.0,203.1L529.3,211.5L529.0,227.0L531.8,231.7L533.4,230.7L531.8,241.3L530.5,242.9L532.1,253.1L530.8,259.2L531.3,262.8L534.1,268.0L535.2,278.8L536.4,283.2L541.6,292.2L544.9,294.6L545.2,306.3L548.0,323.4L546.5,326.8L547.5,336.4L493.6,336.5L445.8,336.4L415.2,336.3L350.5,336.0L301.2,335.8L255.2,335.6L190.2,335.5L158.6,335.5L83.7,335.4L39.2,335.4L12.3,335.4L12.3,78.3L12.0,76.7L12.0,12.1Z"/><circle cx="247.2" cy="248.0" r="5" class="s-power"><title>Bismarck: lowest error in weekly rain — NASA POWER</title></circle><circle cx="101.6" cy="244.9" r="5" class="s-power"><title>Dickinson Theodore Roosevelt R: lowest error in weekly rain — NASA POWER</title></circle><circle cx="529.8" cy="231.8" r="5" class="s-power"><title>Fargo Hector INTL AP: lowest error in weekly rain — NASA POWER</title></circle><circle cx="198.6" cy="155.4" r="5" class="s-power"><title>Garrison: lowest error in weekly rain — NASA POWER</title></circle><circle cx="503.3" cy="124.0" r="5" class="s-power"><title>Grand Forks INTL AP: lowest error in weekly rain — NASA POWER</title></circle><circle cx="111.9" cy="328.5" r="5" class="s-power"><title>Hettinger MUNI AP: lowest error in weekly rain — NASA POWER</title></circle><circle cx="339.0" cy="248.1" r="5" class="s-power"><title>Jamestown 38 WSW: lowest error in weekly rain — NASA POWER</title></circle><circle cx="396.9" cy="231.6" r="5" class="s-power"><title>Jamestown MUNI AP: lowest error in weekly rain — NASA POWER</title></circle><circle cx="60.1" cy="234.9" r="5" class="s-power"><title>Medora 7 E: lowest error in weekly rain — NASA POWER</title></circle><circle cx="210.9" cy="91.2" r="5" class="s-power"><title>Minot INTL AP: lowest error in weekly rain — NASA POWER</title></circle><circle cx="146.4" cy="15.5" r="5" class="s-power"><title>Northgate 5 ESE: lowest error in weekly rain — NASA POWER</title></circle></svg><figcaption>Source with the lowest error in weekly rain, 11 stations.</figcaption><div class="legend"><span><span class="swatch" style="background:var(--c-power)"></span>NASA POWER <span class="count">11</span></span></div></figure></div></section>
+
+  <section id="tasks"><div class="col">
+    <p class="eyebrow">Do you need a weather station?</p><h2>What free data is good enough for in North Dakota</h2>
+    <p>Each cell gives the source's typical error for the task and whether that is good enough.</p>
+  </div><div class="band"><p class="scroll-hint">Swipe the table sideways for all columns →</p><div class="scroll"><table class="tasks"><thead><tr><th>What you need</th><th><span class="swatch" style="background:var(--c-era5)"></span>ERA5</th><th><span class="swatch" style="background:var(--c-ifs)"></span>ECMWF IFS</th><th><span class="swatch" style="background:var(--c-power)"></span>NASA POWER</th></tr></thead><tbody><tr><td><strong>Daily high</strong></td><td>1.3 °C<span class="verdict v-care">With care</span></td><td>1.6 °C; highs run 0.9 °C too cool<span class="verdict v-care">With care</span></td><td>1.7 °C<span class="verdict v-care">With care</span></td></tr><tr><td><strong>Daily low</strong></td><td>1.6 °C; nights run 1.2 °C too warm<span class="verdict v-care">With care</span></td><td>2.2 °C; nights run 1.8 °C too warm<span class="verdict v-care">With care</span></td><td>2.2 °C; nights run 1.1 °C too warm<span class="verdict v-care">With care</span></td></tr><tr><td><strong>Monthly rain</strong></td><td>36% of the month&#x27;s rain<span class="verdict v-no">No</span></td><td>39% of the month&#x27;s rain<span class="verdict v-no">No</span></td><td>28% of the month&#x27;s rain<span class="verdict v-care">Roughly</span></td></tr><tr><td><strong>Which days it rained</strong></td><td>38% of its rainy days were dry<span class="verdict v-no">No</span></td><td>40% of its rainy days were dry<span class="verdict v-no">No</span></td><td>37% of its rainy days were dry<span class="verdict v-no">No</span></td></tr></tbody></table></div></div><div class="col"><p class="note">Typical error is the median over stations. A day with 1 mm or more counts as rainy. Verdicts use the same thresholds on every page of the scorecard. ERA5-Land is left out: it had a larger error than ERA5 almost everywhere, and we did not check its rain. Degree days and frost dates were checked for the US edition as a whole, at 100 farm stations, not state by state: see the <a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US page</a>.</p></div></section>
+
+  <section id="facts"><div class="col">
+    <p class="eyebrow">North Dakota up close</p><h2>What stands out</h2>
+    <ul class="tight"><li>ERA5's error in the daily high ranged from 0.89 °C at Northgate 5 ESE to 1.66 °C at Minot INTL AP.</li><li>ERA5's typical error in the daily high was 1.28 °C here and 1.06 °C across the whole US edition; NASA POWER's weekly rain error was 3.7 mm here and 5.5 mm across the edition.</li><li>In the growing season, April to September, weekly rain was off by 5.3 mm in NASA POWER, 7.3 mm in ERA5 and 7.4 mm in ECMWF IFS.</li><li>Of the days NASA POWER showed rain (1 mm or more), 37% were dry at the station; for ERA5 it was 38%.</li></ul>
+  </div></section>
+
+  <section id="compare"><div class="col">
+    <p class="eyebrow">Compared with the rest of the edition</p><h2>How North Dakota compares</h2>
+    <p>Typical errors of the two leading sources in every state of the US edition.</p>
+  </div><div class="band"><p class="scroll-hint">Swipe the table sideways for all columns →</p><div class="scroll"><table><thead><tr><th>State</th><th class="r">Stations</th><th class="r">ERA5 error,<br>daily high</th><th class="r">ERA5 error,<br>daily low</th><th class="r">NASA POWER error,<br>weekly rain</th><th>Most stations won, rain</th></tr></thead><tbody><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/california/">California</a></td><td class="r"><span class="num">17</span></td><td class="r"><span class="num">1.12 °C</span></td><td class="r"><span class="num">1.67 °C</span></td><td class="r"><span class="num">4.0 mm</span></td><td>IFS</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/georgia/">Georgia</a></td><td class="r"><span class="num">20</span></td><td class="r"><span class="num">1.01 °C</span></td><td class="r"><span class="num">1.24 °C</span></td><td class="r"><span class="num">9.5 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/iowa/">Iowa</a></td><td class="r"><span class="num">16</span></td><td class="r"><span class="num">0.91 °C</span></td><td class="r"><span class="num">1.55 °C</span></td><td class="r"><span class="num">5.6 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/illinois/">Illinois</a></td><td class="r"><span class="num">20</span></td><td class="r"><span class="num">0.90 °C</span></td><td class="r"><span class="num">1.20 °C</span></td><td class="r"><span class="num">6.1 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/kansas/">Kansas</a></td><td class="r"><span class="num">20</span></td><td class="r"><span class="num">1.08 °C</span></td><td class="r"><span class="num">1.44 °C</span></td><td class="r"><span class="num">6.0 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/minnesota/">Minnesota</a></td><td class="r"><span class="num">14</span></td><td class="r"><span class="num">0.98 °C</span></td><td class="r"><span class="num">1.61 °C</span></td><td class="r"><span class="num">5.4 mm</span></td><td>POWER</td></tr><tr class="here"><td>North Dakota</td><td class="r"><span class="num">11</span></td><td class="r"><span class="num">1.28 °C</span></td><td class="r"><span class="num">1.61 °C</span></td><td class="r"><span class="num">3.7 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/nebraska/">Nebraska</a></td><td class="r"><span class="num">20</span></td><td class="r"><span class="num">1.26 °C</span></td><td class="r"><span class="num">1.73 °C</span></td><td class="r"><span class="num">4.6 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/texas/">Texas</a></td><td class="r"><span class="num">20</span></td><td class="r"><span class="num">1.07 °C</span></td><td class="r"><span class="num">1.10 °C</span></td><td class="r"><span class="num">5.5 mm</span></td><td>POWER</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/us/washington/">Washington State</a></td><td class="r"><span class="num">14</span></td><td class="r"><span class="num">1.21 °C</span></td><td class="r"><span class="num">2.33 °C</span></td><td class="r"><span class="num">3.9 mm</span></td><td>IFS</td></tr><tr><td><a href="https://sazonov-p.github.io/free-weather-data-scorecard/">All stations, US edition</a></td><td class="r"><span class="num">172</span></td><td class="r"><span class="num">1.06 °C</span></td><td class="r"><span class="num">1.53 °C</span></td><td class="r"><span class="num">5.5 mm</span></td><td>POWER</td></tr></tbody></table></div></div></section>
+
+  <section id="stations"><div class="col">
+    <p class="eyebrow">All 11 stations</p><h2>Every station's errors</h2>
+    <p class="download"><a href="data.csv" download>Download these stations as CSV</a> (errors of all four sources, offsets and winners).</p>
+  </div><div class="band"><p class="scroll-hint">Swipe the table sideways for all columns →</p><div class="scroll"><table><thead><tr><th>Station</th><th class="r">ERA5 error,<br>daily high, °C</th><th class="r">ERA5 error,<br>daily low, °C</th><th class="r">NASA POWER error,<br>weekly rain, mm</th><th>Lowest error: high · low · rain</th></tr></thead><tbody><tr><td>Bismarck</td><td class="r"><span class="num">1.59</span></td><td class="r"><span class="num">1.33</span></td><td class="r"><span class="num">3.4</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Dickinson Theodore Roosevelt R</td><td class="r"><span class="num">1.28</span></td><td class="r"><span class="num">1.90</span></td><td class="r"><span class="num">3.2</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Fargo Hector INTL AP</td><td class="r"><span class="num">1.01</span></td><td class="r"><span class="num">1.23</span></td><td class="r"><span class="num">3.9</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Garrison</td><td class="r"><span class="num">1.28</span></td><td class="r"><span class="num">1.70</span></td><td class="r"><span class="num">3.5</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Grand Forks INTL AP</td><td class="r"><span class="num">1.09</span></td><td class="r"><span class="num">1.61</span></td><td class="r"><span class="num">4.7</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Hettinger MUNI AP</td><td class="r"><span class="num">1.28</span></td><td class="r"><span class="num">3.15</span></td><td class="r"><span class="num">3.4</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Jamestown 38 WSW</td><td class="r"><span class="num">0.92</span></td><td class="r"><span class="num">1.77</span></td><td class="r"><span class="num">4.5</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Jamestown MUNI AP</td><td class="r"><span class="num">1.41</span></td><td class="r"><span class="num">1.22</span></td><td class="r"><span class="num">3.7</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Medora 7 E</td><td class="r"><span class="num">1.16</span></td><td class="r"><span class="num">1.40</span></td><td class="r"><span class="num">3.4</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Minot INTL AP</td><td class="r"><span class="num">1.66</span></td><td class="r"><span class="num">1.20</span></td><td class="r"><span class="num">3.7</span></td><td>ERA5 · ERA5 · POWER</td></tr><tr><td>Northgate 5 ESE</td><td class="r"><span class="num">0.89</span></td><td class="r"><span class="num">1.95</span></td><td class="r"><span class="num">3.7</span></td><td>ERA5 · ERA5 · POWER</td></tr></tbody></table></div></div></section>
+
+  <section id="method"><div class="col">
+    <p class="eyebrow">Method and limits</p><h2>How we checked</h2>
+    <ul class="tight">
+      <li>Reference: the daily records of NOAA (airport ASOS stations and the US Climate Reference Network), with each day counted the way the service counts it (midnight to midnight, local standard time). Every source is rebuilt into the same days.</li>
+      <li>Each source is read at the nearest grid point over land, without interpolation. All sources are compared on the same days, 2017–2024; ECMWF IFS is Open-Meteo's archive of the 9 km forecast model, which starts in 2017.</li>
+      <li>Many of these stations send their readings to the forecast centers, and ERA5 and the ECMWF forecasts use them. NASA POWER rain is corrected with gauge data. In a field between stations, errors may be larger.</li>
+      <li>Full method, maps and the farm-task tables for the whole edition: <a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>.</li>
+    </ul>
+    <p class="related"><a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition: all 172 stations</a> <a href="https://sazonov-p.github.io/free-weather-data-scorecard/nasa-power-accuracy/">How accurate is NASA POWER weather data?</a> · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/era5-accuracy/">How accurate is ERA5 weather data?</a> · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/era5-land-vs-era5/">Is ERA5-Land more accurate than ERA5?</a></p>
+    <ul class="tight sources"><li>Station observations: NOAA GHCN-Daily (Menne et al. 2012), public domain.</li><li>ERA5, ERA5-Land: contains modified Copernicus Climate Change Service information 2026. ECMWF IFS: © ECMWF, <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>. Weather data by <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>), aggregated to daily values.</li><li>NASA POWER: the POWER Project is funded through the NASA Applied Sciences Program within the Earth Science Division of the Science Mission Directorate.</li><li>State boundaries: us-atlas (ISC), from U.S. Census Bureau cartographic boundary files.</li><li>No endorsement by NOAA, ECMWF, NASA or Open-Meteo is implied. Our derived values are not the original data.</li></ul>
+  </div></section>
+  <footer><div class="col"><span>Free Weather Data Scorecard by <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · data through 2024 · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a> · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">European edition</a> · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/canada/">Canada edition</a> · <a href="https://sazonov-p.github.io/free-weather-data-scorecard/australia/">Australian edition</a></span><span>Privacy: cookie-free visit statistics via <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami</a> (page, traffic source, browser/device and approximate location).</span></div></footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+edition,region,region_name,stations,era5_tmax_mae_c,era5_tmax_bias_c,era5_tmax_stations_won,tmax_stations_ranked,tmax_most_stations_won,era5_tmin_mae_c,era5_tmin_bias_c,era5_tmin_stations_won,tmin_stations_ranked,tmin_most_stations_won,era5_prcp_week_mae_mm,era5_prcp_month_error_pct,era5_rainy_days_dry_share,era5_prcp_stations_won,prcp_stations_ranked,prcp_most_stations_won
+US,ALL,"All stations, US edition",172,1.064,-0.564,147,172,era5,1.529,1.087,116,172,era5,8.141,35.988,0.353,6,172,power
+US,CA,California,17,1.12,-0.048,10,17,era5,1.667,1.385,6,17,ifs,4.2,57.672,0.283,3,17,ifs
+US,GA,Georgia,20,1.011,-0.659,20,20,era5,1.238,1.002,10,20,era5,12.49,29.304,0.35,1,20,power
+US,IA,Iowa,16,0.913,-0.155,16,16,era5,1.554,1.35,12,16,era5,8.65,31.25,0.314,0,16,power
+US,IL,Illinois,20,0.903,-0.538,18,20,era5,1.205,0.918,12,20,era5,9.554,30.143,0.309,0,20,power
+US,KS,Kansas,20,1.078,-0.668,20,20,era5,1.444,1.155,17,20,era5,8.625,37.242,0.384,0,20,power
+US,MN,Minnesota,14,0.981,-0.761,11,14,era5,1.612,1.15,11,14,era5,7.475,29.516,0.332,0,14,power
+US,ND,North Dakota,11,1.278,-0.67,11,11,era5,1.606,1.176,11,11,era5,4.608,35.741,0.382,0,11,power
+US,NE,Nebraska,20,1.256,-0.653,18,20,era5,1.726,1.453,18,20,era5,6.934,38.906,0.413,0,20,power
+US,TX,Texas,20,1.07,-0.58,15,20,era5,1.103,0.588,14,20,era5,7.873,43.679,0.446,1,20,power
+US,WA,Washington State,14,1.207,-0.494,8,14,era5,2.332,1.196,5,14,era5+power,3.921,60.494,0.407,1,14,ifs
+EU,ALL,"All stations, European edition",261,1.166,-0.889,150,259,era5,1.243,0.729,156,259,era5,5.934,24.504,0.27,45,261,power
+EU,AT,Austria,23,2.51,-2.336,11,23,era5,1.89,-0.953,14,23,era5,10.266,37.287,0.35,2,23,power
+EU,CH,Switzerland,12,1.966,-1.731,6,12,era5+ifs,1.939,-1.61,5,12,era5+ifs,10.781,29.97,0.323,2,12,power
+EU,CZ,Czechia,20,1.326,-1.118,8,20,era5+ifs,1.405,0.871,14,20,era5,6.167,31.248,0.332,4,20,power
+EU,DE,Germany,80,1.064,-0.791,48,79,era5,1.165,0.729,60,79,era5,5.545,24.025,0.278,13,80,power
+EU,DK,Denmark,18,0.851,-0.716,6,17,ifs,1.24,1.181,6,17,ifs,4.947,22.308,0.246,12,18,era5
+EU,FR,France,94,1.175,-0.898,60,94,era5,1.258,0.699,49,94,era5,6.313,23.98,0.246,10,94,power
+EU,NL,Netherlands,14,0.821,-0.651,11,14,era5,1.094,0.811,8,14,era5,5.304,21.826,0.243,2,14,power
+CA,ALL,"All stations, Canada edition",122,1.121,-0.762,86,122,era5,1.639,1.08,102,122,era5,4.875,33.442,0.37,26,122,power
+CA,AB,Alberta,22,1.221,-0.79,17,22,era5,1.528,0.693,18,22,era5,3.945,35.619,0.41,11,22,era5
+CA,MB,Manitoba,19,1.064,-0.72,16,19,era5,1.543,1.0,18,19,era5,4.794,40.863,0.404,3,19,power
+CA,ON,Ontario,28,1.069,-0.817,15,28,era5,1.768,1.512,19,28,era5,7.427,24.313,0.266,2,28,power
+CA,QC,Quebec,21,1.33,-0.971,9,21,ifs,1.734,1.015,16,21,era5,7.263,25.376,0.251,1,21,power
+CA,SK,Saskatchewan,32,1.087,-0.626,29,32,era5,1.664,1.174,31,32,era5,4.076,48.634,0.445,9,32,power
+AU,ALL,"All stations, Australian edition",252,1.311,-1.085,88,251,era5,1.413,0.949,159,251,era5,5.634,35.957,0.326,79,252,power
+AU,NSW,New South Wales,53,1.206,-0.973,19,53,era5,1.466,0.859,34,53,era5,6.113,30.944,0.306,10,53,power
+AU,NT,Northern Territory,24,1.273,-1.078,9,24,ifs,1.529,1.284,13,24,era5,9.371,37.213,0.369,4,24,power
+AU,QLD,Queensland,54,1.206,-1.088,19,53,power,1.254,0.854,36,53,era5,7.903,39.713,0.36,17,54,power
+AU,SA,South Australia,32,1.324,-1.187,11,32,ifs,1.448,1.068,24,32,era5,2.868,35.731,0.304,20,32,era5
+AU,TAS,Tasmania,14,1.785,-1.763,3,14,ifs,1.72,1.147,6,14,era5+ifs,6.196,29.165,0.314,5,14,power
+AU,VIC,Victoria,26,1.287,-0.899,10,26,era5+ifs,1.204,0.728,16,26,era5,5.313,30.027,0.279,8,26,power
+AU,WA,Western Australia,49,1.379,-1.207,17,49,era5+power,1.436,1.122,30,49,era5,3.552,42.335,0.287,15,49,power
