@@ -411,7 +411,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     </div>
     <figure class="band">
       <div class="chart" id="scan-chart" role="img" aria-label="Error of ERA5 daily rain for day windows ending at different hours"></div>
-      <figcaption>Median absolute error of ERA5 daily rain at 122 stations, 2017–2024, as the end of Monday's day moves from noon on Monday to noon on Tuesday, UTC.</figcaption>
+      <figcaption>Typical error of ERA5 daily rain (mean absolute error at the median of 122 stations), 2017–2024, as the end of Monday's day moves from noon on Monday to noon on Tuesday, UTC.</figcaption>
     </figure>
   </section>
 
@@ -437,7 +437,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <div class="band scroll">
       <table class="compare" id="compare-table"></table>
     </div>
-    <div class="col"><p class="note">Best source by share of stations won and its median error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). Europe: 261 stations of the national weather services of Germany, France, Austria, Switzerland, Czechia, Denmark and the Netherlands (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">European edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Australia: 252 Bureau of Meteorology stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/australia/">Australian edition</a>). The same sources, 2017–2024.</p></div>
+    <div class="col"><p class="note">Best source by share of stations won and its typical error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). Europe: 261 stations of the national weather services of Germany, France, Austria, Switzerland, Czechia, Denmark and the Netherlands (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">European edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Australia: 252 Bureau of Meteorology stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/australia/">Australian edition</a>). The same sources, 2017–2024.</p></div>
   </section>
 
   <section id="guide">
@@ -615,7 +615,7 @@ function renderScan() {
     marginLeft: 44, marginRight: 40, marginTop: 20, marginBottom: 44,
     style: plotStyle(narrow ? "11px" : "12px"),
     x: { domain: [12, 36], ticks: narrow ? [12, 24, 36] : [12, 18, 24, 30, 36], tickFormat: tickLabel, label: "End of Monday's day, UTC →" },
-    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Median error of daily rain, mm" },
+    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Typical error of ERA5 daily rain, mm" },
     marks: [
       Plot.ruleX([24 - w.documented], { stroke: tok("--rule"), strokeDasharray: "3 3" }),
       Plot.lineY(rows, { x: "end", y: "mae", stroke: tok("--c-de"), strokeWidth: 2, curve: "monotone-x" }),

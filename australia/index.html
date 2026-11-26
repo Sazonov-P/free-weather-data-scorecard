@@ -413,7 +413,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     </div>
     <figure class="band">
       <div class="chart" id="scan-chart" role="img" aria-label="Error of ERA5 daily rain for days ending at different hours, local time"></div>
-      <figcaption>Median absolute error of ERA5 daily rain at 252 stations, 2017–2024, as the end of the day moves from 9 p.m. the evening before to midnight, local clock time.</figcaption>
+      <figcaption>Typical error of ERA5 daily rain (mean absolute error at the median of 252 stations), 2017–2024, as the end of the day moves from 9 p.m. the evening before to midnight, local clock time.</figcaption>
     </figure>
   </section>
 
@@ -439,7 +439,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <div class="band scroll">
       <table class="compare" id="compare-table"></table>
     </div>
-    <div class="col"><p class="note">Best source by share of stations won and its median error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). Europe: 261 stations of the national weather services of Germany, France, Austria, Switzerland, Czechia, Denmark and the Netherlands (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">European edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Canada: 122 Environment and Climate Change Canada stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/canada/">Canada edition</a>). The same sources, 2017–2024.</p></div>
+    <div class="col"><p class="note">Best source by share of stations won and its typical error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). Europe: 261 stations of the national weather services of Germany, France, Austria, Switzerland, Czechia, Denmark and the Netherlands (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/europe/">European edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Canada: 122 Environment and Climate Change Canada stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/canada/">Canada edition</a>). The same sources, 2017–2024.</p></div>
   </section>
 
   <section id="guide">
@@ -617,7 +617,7 @@ function renderScan() {
     marginLeft: 44, marginRight: 24, marginTop: 28, marginBottom: 44,
     style: plotStyle(narrow ? "11px" : "12px"),
     x: { domain: [-3, 24], ticks: narrow ? [0, 9, 18] : [-3, 0, 3, 6, 9, 12, 15, 18, 21, 24], tickFormat: tickLabel, label: "End of the day, local clock time →" },
-    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Median error of daily rain, mm" },
+    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Typical error of ERA5 daily rain, mm" },
     marks: [
       Plot.ruleX([9 + w.documented], { stroke: tok("--rule"), strokeDasharray: "3 3" }),
       Plot.lineY(rows, { x: "end", y: "mae", stroke: tok("--c-de"), strokeWidth: 2, curve: "monotone-x" }),

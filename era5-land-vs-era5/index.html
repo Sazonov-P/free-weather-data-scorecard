@@ -73,14 +73,30 @@ p { margin: 0; }
 .b-src.tie { font-size: clamp(1rem, 0.9rem + 0.8vw, 1.4rem); white-space: normal; }
 .board small { display: none; }
 .board-foot { font-family: var(--f-data); font-size: 0.78rem; color: var(--board-dim); margin-top: 0.75rem; }
-@media (max-width: 620px) {
+/* Narrower than full width (the board is 1080px wide from a 1174px window): one grid for all rows and no column
+   narrower than its content, so a tie ("1.72 °C / 1.53 °C") or a range ("1.06 °C – 1.31 °C") stays on the board */
+@media (max-width: 1173px) {
+  .board [role="table"] { display: grid; grid-template-columns: 1fr 1.7fr 0.8fr 0.9fr; column-gap: 1rem; }
+  .board-row { grid-column: 1 / -1; grid-template-columns: subgrid; }
+}
+/* Phone layout up to 720px: four columns of a tie (Victoria) or of a hub's range need about 670px */
+@media (max-width: 720px) {
+  .board [role="table"] { display: block; }
   .board-head { display: none; }
-  .board-row { grid-template-columns: 1fr auto; grid-template-areas: "var var" "src src" "won err"; row-gap: 0.1rem; padding-block: 0.7rem; }
+  .board-row { grid-template-columns: auto auto; grid-template-areas: "var var" "src src" "won err"; row-gap: 0.1rem; padding-block: 0.7rem; }
   .b-var { grid-area: var; font-family: var(--f-data); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; }
   .b-src { grid-area: src; font-size: 1.9rem; }
-  .b-won { grid-area: won; font-size: 1.15rem; }
-  .b-err { grid-area: err; font-size: 1.15rem; text-align: right; }
+  .b-won, .b-err { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.2565em; font-size: 1.15rem; }  /* a label that does not fit goes under its number; the gap is the old space */
+  .b-won { grid-area: won; }
+  .b-err { grid-area: err; justify-content: flex-end; text-align: right; }
   .board small { display: inline; font-family: var(--f-data); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; color: var(--board-dim); }
+  /* Hub board: its stations and error belong to the hub's source, not to the row's leader, so every value keeps its
+     column head above it, as on a laptop */
+  .board.hub .board-row { grid-template-columns: 1fr 1fr; align-items: end; }
+  .board.hub .b-won, .board.hub .b-err { display: block; }
+  .board.hub small { display: block; white-space: normal; text-wrap: balance; }
+  .board.hub .b-var small { display: inline; letter-spacing: inherit; text-transform: inherit; }
+  .board.hub .b-var small::before { content: " · "; }
 }
 section { padding-block: clamp(2.2rem, 5vw, 3.4rem) 0; display: grid; gap: 1rem; }
 section > .col { display: grid; gap: 0.9rem; }
@@ -127,7 +143,7 @@ table.tasks { min-width: 40rem; }  /* on a phone the verdict table scrolls sidew
     <h1>Is ERA5-Land more accurate than ERA5?</h1>
     <p class="dek">Not at weather stations. ERA5-Land&#x27;s grid is finer (0.1° against ERA5&#x27;s 0.25°) and its grid points sat closer to the stations, yet at 804 stations in the US, Europe, Canada and Australia, 2017–2024, its error in the daily high was larger than ERA5&#x27;s in 28 of 29 regions and its error in the daily low in all 29. ERA5-Land had the lower error at 132 of 804 stations for the daily high and 123 of 804 for the daily low.</p>
     <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · November 2026 · Free Weather Data Scorecard</p>
-    <div class="board"><div role="table" aria-label="ERA5 against ERA5-Land by variable"><div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Lower error</span><span role="columnheader">Regions won</span><span role="columnheader">Typical error, US: ERA5 / ERA5-Land</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">28 of 29 <small>regions</small></span><span class="b-err" role="cell">1.06 / 1.45 °C <small>typical error, US</small></span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">29 of 29 <small>regions</small></span><span class="b-err" role="cell">1.53 / 2.06 °C <small>typical error, US</small></span></div></div><p class="board-foot">Regions where the source had the lower typical error (29 regions in the US, Europe, Canada and Australia). Typical error: ERA5 / ERA5-Land at the median US station, the mean absolute error of daily values.</p></div>
+    <div class="board hub"><div role="table" aria-label="ERA5 against ERA5-Land by variable"><div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Lower error</span><span role="columnheader">Regions won</span><span role="columnheader">Typical error, US: ERA5 / ERA5-Land</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp<small aria-hidden="true">Lower error</small></span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell"><small aria-hidden="true">Regions won</small>28 of 29</span><span class="b-err" role="cell"><small aria-hidden="true">Typical error, US: ERA5 / ERA5-Land</small>1.06 / 1.45 °C</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp<small aria-hidden="true">Lower error</small></span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell"><small aria-hidden="true">Regions won</small>29 of 29</span><span class="b-err" role="cell"><small aria-hidden="true">Typical error, US: ERA5 / ERA5-Land</small>1.53 / 2.06 °C</span></div></div><p class="board-foot">Regions where the source had the lower typical error (29 regions in the US, Europe, Canada and Australia). Typical error: ERA5 / ERA5-Land at the median US station, the mean absolute error of daily values.</p></div>
   </header>
 
   <section id="regions"><div class="col">

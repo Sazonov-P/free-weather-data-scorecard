@@ -73,14 +73,30 @@ p { margin: 0; }
 .b-src.tie { font-size: clamp(1rem, 0.9rem + 0.8vw, 1.4rem); white-space: normal; }
 .board small { display: none; }
 .board-foot { font-family: var(--f-data); font-size: 0.78rem; color: var(--board-dim); margin-top: 0.75rem; }
-@media (max-width: 620px) {
+/* Narrower than full width (the board is 1080px wide from a 1174px window): one grid for all rows and no column
+   narrower than its content, so a tie ("1.72 °C / 1.53 °C") or a range ("1.06 °C – 1.31 °C") stays on the board */
+@media (max-width: 1173px) {
+  .board [role="table"] { display: grid; grid-template-columns: 1fr 1.7fr 0.8fr 0.9fr; column-gap: 1rem; }
+  .board-row { grid-column: 1 / -1; grid-template-columns: subgrid; }
+}
+/* Phone layout up to 720px: four columns of a tie (Victoria) or of a hub's range need about 670px */
+@media (max-width: 720px) {
+  .board [role="table"] { display: block; }
   .board-head { display: none; }
-  .board-row { grid-template-columns: 1fr auto; grid-template-areas: "var var" "src src" "won err"; row-gap: 0.1rem; padding-block: 0.7rem; }
+  .board-row { grid-template-columns: auto auto; grid-template-areas: "var var" "src src" "won err"; row-gap: 0.1rem; padding-block: 0.7rem; }
   .b-var { grid-area: var; font-family: var(--f-data); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; }
   .b-src { grid-area: src; font-size: 1.9rem; }
-  .b-won { grid-area: won; font-size: 1.15rem; }
-  .b-err { grid-area: err; font-size: 1.15rem; text-align: right; }
+  .b-won, .b-err { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.2565em; font-size: 1.15rem; }  /* a label that does not fit goes under its number; the gap is the old space */
+  .b-won { grid-area: won; }
+  .b-err { grid-area: err; justify-content: flex-end; text-align: right; }
   .board small { display: inline; font-family: var(--f-data); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.04em; text-transform: none; color: var(--board-dim); }
+  /* Hub board: its stations and error belong to the hub's source, not to the row's leader, so every value keeps its
+     column head above it, as on a laptop */
+  .board.hub .board-row { grid-template-columns: 1fr 1fr; align-items: end; }
+  .board.hub .b-won, .board.hub .b-err { display: block; }
+  .board.hub small { display: block; white-space: normal; text-wrap: balance; }
+  .board.hub .b-var small { display: inline; letter-spacing: inherit; text-transform: inherit; }
+  .board.hub .b-var small::before { content: " · "; }
 }
 section { padding-block: clamp(2.2rem, 5vw, 3.4rem) 0; display: grid; gap: 1rem; }
 section > .col { display: grid; gap: 0.9rem; }
@@ -127,7 +143,7 @@ table.tasks { min-width: 40rem; }  /* on a phone the verdict table scrolls sidew
     <h1>How accurate is ERA5 weather data?</h1>
     <p class="dek">The most accurate free source for daily temperature in most places. At 807 weather stations in the US, Europe, Canada and Australia, 2017–2024, ERA5 had the smallest error in the daily high at 471 of 804 stations and in the daily low at 533 of 804; its typical daily-high error ranged from 1.06 °C (US) to 1.31 °C (Australia). For weekly rain it won 156 of 807 stations, behind NASA POWER, but led in Denmark, Alberta and South Australia. Its largest errors were at valley stations far below the grid point.</p>
     <p class="byline">By <a href="https://www.linkedin.com/in/sazonov-pavel/" rel="author noopener" target="_blank">Pavel Sazonov</a> · November 2026 · Free Weather Data Scorecard</p>
-    <div class="board"><div role="table" aria-label="ERA5 by variable"><div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Most stations won</span><span role="columnheader">ERA5 won</span><span role="columnheader">ERA5 typical error</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">471 of 804 <small>stations</small></span><span class="b-err" role="cell">1.06 °C – 1.31 °C <small>typical error</small></span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp</span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell">533 of 804 <small>stations</small></span><span class="b-err" role="cell">1.24 °C – 1.64 °C <small>typical error</small></span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Weekly rain</span><span class="b-src" role="cell">NASA POWER</span><span class="b-won" role="cell">156 of 807 <small>stations</small></span><span class="b-err" role="cell">4.9 mm – 8.1 mm <small>typical error</small></span></div></div><p class="board-foot">Stations won by ERA5 and its typical error, lowest to highest among the US, Europe, Canada and Australia, at 807 stations, 2017–2024.</p></div>
+    <div class="board hub"><div role="table" aria-label="ERA5 by variable"><div class="board-row board-head" role="row"><span role="columnheader">Variable</span><span role="columnheader">Most stations won</span><span role="columnheader">ERA5 won</span><span role="columnheader">ERA5 typical error</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Max temp<small aria-hidden="true">Most stations won</small></span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell"><small aria-hidden="true">ERA5 won</small>471 of 804</span><span class="b-err" role="cell"><small aria-hidden="true">ERA5 typical error</small>1.06 °C – 1.31 °C</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Min temp<small aria-hidden="true">Most stations won</small></span><span class="b-src" role="cell">ERA5</span><span class="b-won" role="cell"><small aria-hidden="true">ERA5 won</small>533 of 804</span><span class="b-err" role="cell"><small aria-hidden="true">ERA5 typical error</small>1.24 °C – 1.64 °C</span></div><div class="board-row" role="row"><span class="b-var" role="rowheader">Weekly rain<small aria-hidden="true">Most stations won</small></span><span class="b-src" role="cell">NASA POWER</span><span class="b-won" role="cell"><small aria-hidden="true">ERA5 won</small>156 of 807</span><span class="b-err" role="cell"><small aria-hidden="true">ERA5 typical error</small>4.9 mm – 8.1 mm</span></div></div><p class="board-foot">Stations won by ERA5 and its typical error, lowest to highest among the US, Europe, Canada and Australia, at 807 stations, 2017–2024.</p></div>
   </header>
 
   <section id="temperature"><div class="col">

@@ -428,7 +428,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <figure class="band">
       <div class="legend" id="scan-legend"></div>
       <div class="chart" id="scan-chart" role="img" aria-label="Error of ERA5 daily rain for day windows ending at different hours"></div>
-      <figcaption>Median absolute error of ERA5 daily rain at the stations of each service, 2017–2024, as the end of Monday's day moves from noon on Monday to noon on Tuesday, UTC. DMI is drawn at its winter hours.</figcaption>
+      <figcaption>Typical error of ERA5 daily rain (mean absolute error at the median station of each service), 2017–2024, as the end of Monday's day moves from noon on Monday to noon on Tuesday, UTC. DMI is drawn at its winter hours.</figcaption>
     </figure>
   </section>
 
@@ -468,7 +468,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <div class="band scroll">
       <table class="compare" id="compare-table"></table>
     </div>
-    <div class="col"><p class="note">Best source by share of stations won and its median error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Australia: 252 Bureau of Meteorology stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/australia/">Australian edition</a>). The same sources, 2017–2024.</p></div>
+    <div class="col"><p class="note">Best source by share of stations won and its typical error. US: 172 airport and reference stations in 10 farm states (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/">US edition</a>). UK: 67 Met Office stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/uk/">UK edition</a>). Australia: 252 Bureau of Meteorology stations (<a href="https://sazonov-p.github.io/free-weather-data-scorecard/australia/">Australian edition</a>). The same sources, 2017–2024.</p></div>
   </section>
 
   <section id="guide">
@@ -481,7 +481,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
         <thead><tr><th>You need</th><th>Use</th><th>Why</th></tr></thead>
         <tbody>
           <tr><td>Daily max temperature</td><td><span class="pick">ERA5</span></td><td>Lowest error at 58% of stations; in Denmark the ECMWF forecasts did better. In hilly terrain adjust for height, about 0.6 °C per 100 m.</td></tr>
-          <tr><td>Daily min temperature</td><td><span class="pick">ERA5</span>, check locally</td><td>Best at 60% of stations; in France and Denmark the ECMWF forecasts had a lower median error. Raw values run 0.6 to 0.8 °C warm at night.</td></tr>
+          <tr><td>Daily min temperature</td><td><span class="pick">ERA5</span>, check locally</td><td>Best at 60% of stations; in France and Denmark the ECMWF forecasts had a lower typical error. Raw values run 0.6 to 0.8 °C warm at night.</td></tr>
           <tr><td>Rain</td><td><span class="pick">NASA POWER</span></td><td>Lowest error of weekly totals at 61% of stations, about 6% less error than ERA5 and IFS. POWER rain is adjusted to gauge analyses. In Denmark use ERA5: there NASA POWER had the largest error. A plain average of POWER, ERA5 and IFS did slightly better still, 5.3 mm against 5.5 mm.</td></tr>
           <tr><td>Daily rain to match a national service</td><td><span class="pick">The service's own hours</span></td><td>6:00 to 6:00 UTC for DWD, Météo-France, GeoSphere Austria and ČHMÚ; midnight to midnight UTC for KNMI and MeteoSwiss; midnight Danish time for DMI. Add up any source's hourly rain over these hours. At the 6:00 services, calendar days add about a fifth to the daily error.</td></tr>
           <tr><td>Degree days</td><td><span class="pick">ERA5</span></td><td>Within 5% of the season total at the median station.</td></tr>
@@ -717,7 +717,7 @@ function renderScan() {
     marginLeft: 44, marginRight: 40, marginTop: 20, marginBottom: 44,
     style: plotStyle(narrow ? "11px" : "12px"),
     x: { domain: [12, 36], ticks: narrow ? [12, 24, 36] : [12, 18, 24, 30, 36], tickFormat: tickLabel, label: "End of Monday's day, UTC →" },
-    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Median error of daily rain, mm" },
+    y: { domain: [0, Math.ceil(yMax * 2) / 2], grid: true, label: "↑ Typical error of ERA5 daily rain, mm" },
     marks: [
       Plot.ruleX([24 - DATA.windows.MF_prcp.documented], { stroke: tok("--rule"), strokeDasharray: "3 3" }),
       Plot.lineY(rows, { x: "end", y: "mae", z: "country", stroke: (d) => color[d.country], strokeWidth: 2, curve: "monotone-x" }),

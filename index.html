@@ -397,8 +397,8 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
       <p>ERA5-Land and the ECMWF forecast model both run on a 9 km grid, almost three times finer than ERA5. Both missed the daily high by about 0.4 °C more than ERA5 did, including in the hills of eastern Washington and in California's Central Valley.</p>
     </div>
     <figure class="band">
-      <div class="chart" id="res-chart" role="img" aria-label="Grid spacing against median error for each source"></div>
-      <figcaption>Median absolute error of daily max and min temperature at 172 stations against the source's grid spacing. NASA POWER's 0.5° × 0.625° cell is about 50 km across.</figcaption>
+      <div class="chart" id="res-chart" role="img" aria-label="Grid spacing against typical error for each source"></div>
+      <figcaption>Typical error of daily max and min temperature (mean absolute error at the median of 172 stations) against the source's grid spacing. NASA POWER's 0.5° × 0.625° cell is about 50 km across.</figcaption>
     </figure>
   </section>
 
@@ -434,7 +434,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     </div>
     <figure class="band">
       <div class="chart" id="rain-chart" role="img" aria-label="Error of monthly rain totals by source at farm stations"></div>
-      <figcaption>Median absolute error of monthly rain totals, April to October 2017–2024, at {{rain_n}} farm stations. gridMET is calibrated to PRISM, which uses these two networks, so part of its lead may come from having seen them.</figcaption>
+      <figcaption>Typical error of monthly rain totals (mean absolute error at the median of {{rain_n}} farm stations), April to October 2017–2024. gridMET is calibrated to PRISM, which uses these two networks, so part of its lead may come from having seen them.</figcaption>
     </figure>
     <div class="col">
       <p>Temperature is less clear-cut. The answer depends on how you define the daily high. Built from 24 hourly readings, it comes out about 0.6 °C lower than the official daily maximum of the same station, and that favors sources whose daily high is also taken from hourly values, such as ERA5.</p>
@@ -443,7 +443,7 @@ footer .col { border-top: 1px solid var(--rule); padding-top: 1rem; display: gri
     <div class="band scroll">
       <table id="temp-table"></table>
     </div>
-    <p class="col note">Median absolute daily error, °C, at {{temp_n}} farm stations, April to October 2017–2024. "Hourly" builds the station's daily max and min from its 24 hourly readings; "official" uses the network's own daily extremes. The ERA5 column is ERA5 as is, without corrections. ▲ marks the best value in each row.</p>
+    <p class="col note">Typical daily error, °C (mean absolute error at the median of {{temp_n}} farm stations), April to October 2017–2024. "Hourly" builds the station's daily max and min from its 24 hourly readings; "official" uses the network's own daily extremes. The ERA5 column is ERA5 as is, without corrections. ▲ marks the best value in each row.</p>
   </section>
 
   <section id="blend">
@@ -651,7 +651,7 @@ function renderResolution() {
     marginLeft: 48, marginRight: narrow ? 78 : 24, marginTop: 28, marginBottom: 44,  // narrow: facet labels sit on the right
     style: { background: "transparent", color: tok("--ink"), fontFamily: fontData(), fontSize: "12px" },
     x: { type: "log", domain: [7, 70], ticks: [9, 25, 50], tickFormat: (d) => `${d} km`, label: "Grid spacing →" },
-    y: { domain: [0.8, 2.2], grid: true, label: "↑ Median error, °C" },
+    y: { domain: [0.8, 2.2], grid: true, label: "↑ Typical error, °C" },
     fx: narrow ? undefined : { label: null, padding: 0.12 },
     fy: narrow ? { label: null, padding: 0.15 } : undefined,
     marks: [
@@ -775,7 +775,7 @@ function renderRain() {
     width, height: 230,
     marginLeft: 108, marginRight: 64, marginTop: 10, marginBottom: 40,
     style: { background: "transparent", color: tok("--ink"), fontFamily: fontData(), fontSize: "12px" },
-    x: { domain: [0, 20], grid: true, label: width < 560 ? "Median monthly rain error, mm →" : "Median error of monthly rain totals, mm →" },
+    x: { domain: [0, 20], grid: true, label: width < 560 ? "Typical monthly rain error, mm →" : "Typical error of monthly rain totals, mm →" },
     y: { domain: rows.map((d) => d.name), label: null },
     marks: [
       Plot.barX(rows, { x: "v", y: "name", fill: (d) => srcColor(d.key), insetTop: 5, insetBottom: 5 }),
